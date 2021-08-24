@@ -1,0 +1,42 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Category</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let article of articles; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ article.title }}</td>
+      <td>{{ article.description }}</td>
+      <td><img src="{{ article.image }}" alt="" /></td>
+      <td>{{ article.category }}</td>
+      <td style="width: 0">
+        <button
+          class="btn btn-primary"
+          *ngIf="!inFavoriteList(article)"
+          (click)="addToFavorites(article)"
+          type="button"
+        >
+          ADD TO FAVORITES
+        </button>
+        <button
+          class="btn btn-danger"
+          *ngIf="inFavoriteList(article)"
+          (click)="removeFromFavorites(article)"
+          type="button"
+        >
+          REMOVE FROM FAVORITES
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" type="button" [routerLink]="['/home']">
+  Back
+</button>
